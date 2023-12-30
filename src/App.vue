@@ -27,10 +27,28 @@ const addToCart = (guitar: GuitarProps) => {
     cart.value.push(guitarWithQuantity);
   }
 };
+
+const incrementQuantity = (id: number) => {
+  const index = cart.value.findIndex((product) => product.id === id);
+  cart.value[index].quantity++;
+};
+
+const decrementQuantity = (id: number) => {
+  const index = cart.value.findIndex((product) => product.id === id);
+  if (cart.value[index].quantity <= 1) {
+    cart.value = cart.value.filter((product) => product.id !== id);
+  } else {
+    cart.value[index].quantity--;
+  }
+};
 </script>
 
 <template>
-  <Header :cart="cart" />
+  <Header
+    :cart="cart"
+    @increment-quantity="incrementQuantity"
+    @decrement-quantity="decrementQuantity"
+  />
   <main class="container-xl mt-5">
     <h2 class="text-center">Nuestra Colección</h2>
 

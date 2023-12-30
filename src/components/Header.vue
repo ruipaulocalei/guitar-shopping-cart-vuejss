@@ -3,6 +3,7 @@ import { GuitarWithQuantity } from '../App.vue';
 defineProps<{
   cart: GuitarWithQuantity[];
 }>();
+defineEmits(['decrement-quantity', 'increment-quantity']);
 </script>
 <template>
   <header class="py-5 header" :cart="cart">
@@ -43,16 +44,28 @@ defineProps<{
                       <td>
                         <img
                           class="img-fluid"
-                          :src="'/img/'+product.image+'.jpg'"
-                          :alt="'imagen guitarra '+product.name"
+                          :src="'/img/' + product.image + '.jpg'"
+                          :alt="'imagen guitarra ' + product.name"
                         />
                       </td>
-                      <td>{{product.name}}</td>
-                      <td class="fw-bold">${{product.price}}</td>
+                      <td>{{ product.name }}</td>
+                      <td class="fw-bold">${{ product.price }}</td>
                       <td class="flex align-items-start gap-4">
-                        <button type="button" class="btn btn-dark">-</button>
+                        <button
+                          @click="$emit('decrement-quantity', product.id)"
+                          type="button"
+                          class="btn btn-dark"
+                        >
+                          -
+                        </button>
                         {{ product.quantity }}
-                        <button type="button" class="btn btn-dark">+</button>
+                        <button
+                          @click="$emit('increment-quantity', product.id)"
+                          type="button"
+                          class="btn btn-dark"
+                        >
+                          +
+                        </button>
                       </td>
                       <td>
                         <button class="btn btn-danger" type="button">X</button>
