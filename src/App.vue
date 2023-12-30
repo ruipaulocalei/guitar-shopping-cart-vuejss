@@ -76,7 +76,7 @@ const clearCart = () => {
     @clear-cart="clearCart"
   />
   <main class="container-xl mt-5">
-    <h2 class="text-center">Nuestra Colección</h2>
+    <h2 class="text-center">Our Collections</h2>
 
     <div class="row mt-5">
       <Guitar

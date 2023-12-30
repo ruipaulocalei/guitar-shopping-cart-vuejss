@@ -45,10 +45,10 @@ const totalAmount = computed(() => {
                 <table class="w-100 table">
                   <thead>
                     <tr>
-                      <th>Imagen</th>
-                      <th>Nombre</th>
-                      <th>Precio</th>
-                      <th>Cantidad</th>
+                      <th>Image</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -119,12 +119,12 @@ const totalAmount = computed(() => {
             odit.
           </p>
           <p class="text-primary fs-1 fw-black">$399</p>
-          <button
+          <!-- <button
             type="button"
             class="btn fs-4 bg-primary text-white py-2 px-5"
           >
             Agregar al Carrito
-          </button>
+          </button> -->
         </div>
       </div>
     </div>
