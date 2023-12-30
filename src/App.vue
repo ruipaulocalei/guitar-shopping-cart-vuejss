@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Footer from './components/Footer.vue';
 import Header from './components/Header.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { db, GuitarProps } from './data/guitars';
 import Guitar from './components/Guitar.vue';
 
@@ -12,9 +12,25 @@ export type GuitarWithQuantity = GuitarProps & {
 const guitars = ref<GuitarProps[]>([]);
 const cart = ref<GuitarWithQuantity[]>([]);
 
+watch(
+  cart,
+  () => {
+    saveInLocalStorage();
+  },
+  { deep: true }
+);
+
 onMounted(() => {
   guitars.value = db;
+  const cartInLocalStorage = localStorage.getItem('cart');
+  if (cartInLocalStorage) {
+    cart.value = JSON.parse(cartInLocalStorage);
+  }
 });
+
+const saveInLocalStorage = () => {
+  localStorage.setItem('cart', JSON.stringify(cart.value));
+};
 
 const addToCart = (guitar: GuitarProps) => {
   const existInCart = cart.value.findIndex(
