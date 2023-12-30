@@ -45,6 +45,10 @@ const decrementQuantity = (id: number) => {
 const clearProduct = (id: number) => {
   cart.value = cart.value.filter((product) => product.id !== id);
 };
+
+const clearCart = () => {
+  cart.value = [];
+};
 </script>
 
 <template>
@@ -53,6 +57,7 @@ const clearProduct = (id: number) => {
     @increment-quantity="incrementQuantity"
     @decrement-quantity="decrementQuantity"
     @clear-product="clearProduct"
+    @clear-cart="clearCart"
   />
   <main class="container-xl mt-5">
     <h2 class="text-center">Nuestra Colección</h2>

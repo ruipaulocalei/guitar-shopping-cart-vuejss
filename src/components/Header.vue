@@ -4,7 +4,12 @@ import { computed } from 'vue';
 const props = defineProps<{
   cart: GuitarWithQuantity[];
 }>();
-defineEmits(['decrement-quantity', 'increment-quantity', 'clear-product']);
+defineEmits([
+  'decrement-quantity',
+  'increment-quantity',
+  'clear-product',
+  'clear-cart',
+]);
 
 const totalAmount = computed(() => {
   return props.cart.reduce(
@@ -91,7 +96,12 @@ const totalAmount = computed(() => {
                 <p class="text-end">
                   Total amount: <span class="fw-bold">${{ totalAmount }}</span>
                 </p>
-                <button class="btn btn-dark w-100 mt-3 p-2">Clear Cart</button>
+                <button
+                  @click="$emit('clear-cart')"
+                  class="btn btn-dark w-100 mt-3 p-2"
+                >
+                  Clear Cart
+                </button>
               </div>
             </div>
           </div>
