@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { GuitarWithQuantity } from '../App.vue';
-import { computed } from "vue";
+import { computed } from 'vue';
 const props = defineProps<{
   cart: GuitarWithQuantity[];
 }>();
-defineEmits(['decrement-quantity', 'increment-quantity']);
+defineEmits(['decrement-quantity', 'increment-quantity', 'clear-product']);
 
 const totalAmount = computed(() => {
-  return props.cart.reduce((total, product) => total + (product.quantity * product.price), 0)
-})
+  return props.cart.reduce(
+    (total, product) => total + product.quantity * product.price,
+    0
+  );
+});
 </script>
 <template>
   <header class="py-5 header" :cart="cart">
@@ -73,7 +76,13 @@ const totalAmount = computed(() => {
                         </button>
                       </td>
                       <td>
-                        <button class="btn btn-danger" type="button">X</button>
+                        <button
+                          @click="$emit('clear-product', product.id)"
+                          class="btn btn-danger"
+                          type="button"
+                        >
+                          X
+                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -82,9 +91,7 @@ const totalAmount = computed(() => {
                 <p class="text-end">
                   Total amount: <span class="fw-bold">${{ totalAmount }}</span>
                 </p>
-                <button class="btn btn-dark w-100 mt-3 p-2">
-                  Clear Cart
-                </button>
+                <button class="btn btn-dark w-100 mt-3 p-2">Clear Cart</button>
               </div>
             </div>
           </div>
