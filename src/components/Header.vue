@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { GuitarWithQuantity } from '../App.vue';
-defineProps<{
+import { computed } from "vue";
+const props = defineProps<{
   cart: GuitarWithQuantity[];
 }>();
 defineEmits(['decrement-quantity', 'increment-quantity']);
+
+const totalAmount = computed(() => {
+  return props.cart.reduce((total, product) => total + (product.quantity * product.price), 0)
+})
 </script>
 <template>
   <header class="py-5 header" :cart="cart">
@@ -26,7 +31,7 @@ defineEmits(['decrement-quantity', 'increment-quantity']);
 
             <div id="carrito" class="bg-white p-3">
               <p v-if="cart.length == 0" class="text-center">
-                El carrito esta vacio
+                The cart is empty
               </p>
               <div v-else>
                 <table class="w-100 table">
@@ -75,10 +80,10 @@ defineEmits(['decrement-quantity', 'increment-quantity']);
                 </table>
 
                 <p class="text-end">
-                  Total pagar: <span class="fw-bold">$899</span>
+                  Total amount: <span class="fw-bold">${{ totalAmount }}</span>
                 </p>
                 <button class="btn btn-dark w-100 mt-3 p-2">
-                  Vaciar Carrito
+                  Clear Cart
                 </button>
               </div>
             </div>
