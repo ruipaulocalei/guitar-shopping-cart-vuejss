@@ -3,6 +3,8 @@ import { GuitarProps } from '../data/guitars';
 defineProps<{
   guitar: GuitarProps;
 }>();
+
+defineEmits(['add-to-cart']);
 </script>
 
 <template>
@@ -11,7 +13,7 @@ defineProps<{
       <img
         class="img-fluid"
         :src="'/img/' + guitar.image + '.jpg'"
-        :alt="'guitar image'+guitar.name+"
+        :alt="'guitar image' + guitar.name + ''"
       />
     </div>
     <div class="col-8">
@@ -22,8 +24,14 @@ defineProps<{
         {{ guitar.description }}
       </p>
       <p class="fw-black text-primary fs-3">${{ guitar.price }}</p>
-      <button type="button" class="btn btn-dark w-100">Add To Cart</button>
+      <button
+        @click="$emit('add-to-cart', guitar)"
+        type="button"
+        class="btn btn-dark w-100"
+      >
+        Add To Cart
+      </button>
     </div>
   </div>
-  <!-- FIN GUITARRA -->
+  <!-- END GUITAR -->
 </template>
