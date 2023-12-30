@@ -53,7 +53,7 @@ const totalAmount = computed(() => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="product in cart">
+                    <tr v-for="product in cart" :key="product.id">
                       <td>
                         <img
                           class="img-fluid"

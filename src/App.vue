@@ -81,6 +81,7 @@ const clearCart = () => {
     <div class="row mt-5">
       <Guitar
         v-for="guitar in guitars"
+        :key="guitar.id"
         :guitar="guitar"
         @add-to-cart="addToCart"
       />
