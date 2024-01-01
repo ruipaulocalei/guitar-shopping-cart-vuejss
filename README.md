@@ -11,3 +11,5 @@
 - [x] Clear cart
 - [x] Calculate total amount in cart
 - [x] Saving cart in Local Storage
+
+- [See the app here](https://cheerful-twilight-89444d.netlify.app/)
